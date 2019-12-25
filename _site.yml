@@ -1,6 +1,7 @@
 name: "my-website"
+output-dir: "."
 navbar:
-  title: "My Website"
+  title: "Population: Tire"
   left:
     - text: "Home"
       href: index.html
