@@ -1,21 +1,17 @@
 ---
 title: "Hannah's Website"
-author: "Hannah Flaherty"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 
-
-This is an website, for Hannah.
+This is a website, for Hannah.
 
 ```{r cars}
 cats <- data.frame("name" = c("Ada", "Bea"),
                    "birth_year" = c(2009, 2011),
                    "color_primary" = c("white", "black"),
                    "color_secondary" = c("gray", "white"))
+print(cats)
 ```
 
 ## Cats
