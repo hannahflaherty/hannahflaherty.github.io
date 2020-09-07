@@ -1,0 +1,9 @@
+
+
+
+
+```{r echo=FALSE, out.width = '100%', out.height=1000}
+library(knitr)
+knitr::include_graphics("./images/Hannah Flaherty - Resume 2020.pdf")
+```
+

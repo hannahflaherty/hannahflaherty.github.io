@@ -2,6 +2,51 @@
 title: "About"
 ---
 
-```{r, echo = FALSE}
-print("If you really want to hear about it, the first thing you'll probably want to know is where I was born, and what my lousy childhood was like, and how my parents were occupied and all before they had me, and all that David Copperfield kind of crap, but I don't feel like going into it, if you want to know the truth.")
+I like information and the visual representation thereof. I can freehand a decent map of the contiguous 48 US states. I reject the cat person/dog person dichotomy. 
 
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+library(ggplot2)
+library(viridisLite)
+library(gganimate)
+library(dplyr)
+library(tidyr)
+pets <- data.frame("name" = c("Ada", "Bea", "Cokey", "Moby", "Bongo"),
+                   "birth" = c("2009-05-31", "2011-04-01", "1986-06-15", "1998-02-14", "1997-01-01"),
+                   "death" = c(NA, NA, "1981-10-10", "2010-12-05", "2009-04-20"),
+                   "alive" = c(T, T, F, F, F),
+                   "species" = c("cat", "cat", "dog", "dog", "cat"),
+                   "color_primary" = c("white", "black", "black", "black", "gray"),
+                   "color_secondary" = c("gray", "white", "black", "black", "white"),
+                   stringsAsFactors = FALSE)
+
+pets <- pets %>% 
+  gather("state","date",2:3) %>%
+  mutate(date = as.Date(date),
+         date = case_when(alive & state == "death" ~ Sys.Date(),
+                          T ~ date))
+
+```
+
+## 
+
+```{r echo=FALSE, message = FALSE, warning = FALSE}
+prim_cols <- pets$color_primary
+names(prim_cols) <- pets$name 
+# prim_cols <- unique(prim_cols)
+
+sec_cols <- pets$color_secondary
+names(sec_cols) <- pets$name
+# sec_cols <- unique(sec_cols)
+
+ggplot(pets, aes(x = date, y = name, fill = name, color = name, group = name)) +
+  geom_line(size = 10) +
+  scale_color_manual(values = prim_cols) +
+  # geom_line(data = pets, size = 3) +
+  theme_minimal() +
+  facet_grid(species ~ ., scales = "free_y") +
+  theme(legend.position = "none", panel.background = element_rect(fill = "grey92", colour = "white")) +
+  labs(x = "", y = "",
+       title = "Pets I Have Had")
+  
+
+```

@@ -1,27 +1,7 @@
----
-title: "Hannah's Website"
----
 
 
-
-This is a website, for Hannah.
-
-```{r cars}
-cats <- data.frame("name" = c("Ada", "Bea"),
-                   "birth_year" = c(2009, 2011),
-                   "color_primary" = c("white", "black"),
-                   "color_secondary" = c("gray", "white"))
-print(cats)
-```
-
-## Cats
-
-```{r pressure, echo=FALSE}
-library(ggplot2)
-library(viridisLite)
-ggplot(cats, aes(x = birth_year, fill = name)) +
-  geom_histogram(binwidth = 1) +
-  scale_fill_manual(values = viridis(2)) +
-  theme_minimal()
+```{r echo=FALSE, out.width = '100%', out.height='100%'}
+library(knitr)
+knitr::include_graphics("./images/sagredo.jpg")
 ```
 
